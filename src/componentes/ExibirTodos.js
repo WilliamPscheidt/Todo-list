@@ -1,22 +1,12 @@
 import React from 'react'
 
 const ExibirTodos = (props  ) => {
+    const Oi = () => {
+        console.log("Oi")
+    }
     return (
         <div>
-            {
-                props.tarefas.length > 0
-                    ?
-                    props.tarefas.map((item, i) => {
-                        console.log(props.tarefas)
-                        return [
-                            <ul key={i}>
-                                <li>{i}</li>
-                            </ul>
-                        ]
-                    })
-                    :
-                    "Sem Dados"
-            }
+
         </div>
     )
 }
