@@ -1,7 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 
 const App = () => {
-  const [valor, setValor] = useState("");
   const [tarefas, setTarefas] = useState([])
   const inputElemento = useRef(null)
 
@@ -17,10 +16,7 @@ const App = () => {
 
   return (
     <div className="App">
-        <input
-          type="text"
-          ref={inputElemento}
-        />
+        <input type="text" ref={inputElemento} />
         <button onClick={AdicionarTarefa}>adicionar</button>
 
       <div>
