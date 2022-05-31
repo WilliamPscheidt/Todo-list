@@ -1,5 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 
+import './Estilo/Global.css'
+
 const App = () => {
   const [tarefas, setTarefas] = useState([])
   const inputElemento = useRef(null)
@@ -16,25 +18,29 @@ const App = () => {
 
   return (
     <div className="App">
-        <input type="text" ref={inputElemento} />
-        <button onClick={AdicionarTarefa}>adicionar</button>
-
-      <div>
-        {
-          tarefas.length > 0
-            ?
-            tarefas.map((tarefa, i) => {
-              return [
-                <div key={i}>
+      <div className="card-container">
+        <div className="menu-todo">
+          <input type="text" ref={inputElemento} className="inputTodo" value="Insira a tarefa aqui" />
+          <button onClick={AdicionarTarefa} className="btnInserir">Adicionar</button>
+        </div>
+        <div>
+          {
+            tarefas.length > 0
+              ?
+              tarefas.map((tarefa, i) => {
+                return [
+                  <div key={i}>
                     <h1>{i}.{tarefa}</h1>
-                    <button onClick={()=> RemoverTarefa(i)}>Remover</button>
-                </div>
-              ]
-            })
-            :
-            "Sem Dados"
-        }
+                    <button onClick={() => RemoverTarefa(i)}>Remover</button>
+                  </div>
+                ]
+              })
+              :
+              "Sem Dados"
+          }
+        </div>
       </div>
+
 
     </div>
   );
