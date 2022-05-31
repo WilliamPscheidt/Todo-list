@@ -1,28 +1,50 @@
 import React, { useEffect, useRef, useState } from "react";
-import ExibirTodos from "./componentes/ExibirTodos";
 
-const App = () =>{
-  const inputTarefa = useRef(null);
-  const [tarefas, setTarefas] = useState([""])
-
-  useEffect(() => {
-    console.log("oi")
-  })
-
-  const AdicionarTarefa = () => {
-    return tarefas.push(inputTarefa.current.value)
-  }
+const App = () => {
+  const [valor, setValor] = useState("");
+  const [tarefas, setTarefas] = useState([])
 
   return (
     <div className="App">
-      <input name="Tarefa" ref={inputTarefa}/>
-      <button onClick={AdicionarTarefa}>Adicionar Tarefa</button>
+      <form
+        onSubmit={event => {
+          event.preventDefault();
+          setTarefas([...tarefas, valor]);
+        }}>
+        <input
+          type="text"
+          value={valor}
+          onChange={event => setValor(event.target.value)}
+        />
+        <button type="submit">adicionar</button>
+      </form>
 
-      <div>
-        <ExibirTodos tarefas={tarefas}/>
-      </div>
+      {
+        tarefas.length > 0
+          ?
+          tarefas.map((tarefa, i) => {
+            return [
+              <div key={i}>
+                <form
+                  onSubmit={event => {
+                    event.preventDefault();
+                    tarefas.splice(i, i);
+                    setTarefas(tarefas);
+                  }}
+                >
+                  <h1>{tarefa}</h1>
+                  <button type="submit">Remover</button>
+                </form>
+
+              </div>
+            ]
+          })
+          :
+          "Sem Dados"
+      }
     </div>
   );
+
 }
 
 export default App;
