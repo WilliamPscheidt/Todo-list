@@ -20,7 +20,7 @@ const App = () => {
     <div className="App">
       <div className="card-container">
         <div className="menu-todo">
-          <input type="text" ref={inputElemento} className="inputTodo" value="Insira a tarefa aqui" />
+          <input type="text" ref={inputElemento} className="inputTodo" placeholder="Adicione uma tarefa aqui"/>
           <button onClick={AdicionarTarefa} className="btnInserir">Adicionar</button>
         </div>
         <div>
@@ -36,7 +36,7 @@ const App = () => {
                 ]
               })
               :
-              "Sem Dados"
+              "Insira uma tarefa! =D"
           }
         </div>
       </div>
