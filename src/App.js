@@ -36,7 +36,7 @@ const App = () => {
                 ]
               })
               :
-              "Insira uma tarefa! =D"
+              <div className="feedback">Insira uma tarefa! =D</div>
           }
         </div>
       </div>
