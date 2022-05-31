@@ -3,45 +3,43 @@ import React, { useEffect, useRef, useState } from "react";
 const App = () => {
   const [valor, setValor] = useState("");
   const [tarefas, setTarefas] = useState([])
+  const inputElemento = useRef(null)
+
+  const RemoverTarefa = (index) => {
+    let ResultadoRemocao = tarefas
+    ResultadoRemocao.splice(index, 1)
+    setTarefas([...ResultadoRemocao])
+  }
+
+  const AdicionarTarefa = () => {
+    setTarefas([...tarefas, inputElemento.current.value])
+  }
 
   return (
     <div className="App">
-      <form
-        onSubmit={event => {
-          event.preventDefault();
-          setTarefas([...tarefas, valor]);
-        }}>
         <input
           type="text"
-          value={valor}
-          onChange={event => setValor(event.target.value)}
+          ref={inputElemento}
         />
-        <button type="submit">adicionar</button>
-      </form>
+        <button onClick={AdicionarTarefa}>adicionar</button>
 
-      {
-        tarefas.length > 0
-          ?
-          tarefas.map((tarefa, i) => {
-            return [
-              <div key={i}>
-                <form
-                  onSubmit={event => {
-                    event.preventDefault();
-                    tarefas.splice(i, i);
-                    setTarefas(tarefas);
-                  }}
-                >
-                  <h1>{tarefa}</h1>
-                  <button type="submit">Remover</button>
-                </form>
+      <div>
+        {
+          tarefas.length > 0
+            ?
+            tarefas.map((tarefa, i) => {
+              return [
+                <div key={i}>
+                    <h1>{i}.{tarefa}</h1>
+                    <button onClick={()=> RemoverTarefa(i)}>Remover</button>
+                </div>
+              ]
+            })
+            :
+            "Sem Dados"
+        }
+      </div>
 
-              </div>
-            ]
-          })
-          :
-          "Sem Dados"
-      }
     </div>
   );
 
