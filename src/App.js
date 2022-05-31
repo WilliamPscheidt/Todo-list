@@ -29,9 +29,9 @@ const App = () => {
               ?
               tarefas.map((tarefa, i) => {
                 return [
-                  <div key={i}>
-                    <h1>{i}.{tarefa}</h1>
-                    <button onClick={() => RemoverTarefa(i)}>Remover</button>
+                  <div key={i} className="card-tarefa">
+                    <span className="texto-tarefa">{tarefa}</span>
+                    <button onClick={() => RemoverTarefa(i)} className="btn-concluir">Concluir</button>
                   </div>
                 ]
               })
